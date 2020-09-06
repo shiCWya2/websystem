@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>树详情</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="./css/typo.css">
+    <link rel="stylesheet" href="./lib/prism/prism.css">
+    <link rel="stylesheet" href="./lib/tocbot/tocbot.css">
+    <link rel="stylesheet" href="./css/me.css">
+    <style>
+        li {
+            list-style-type: none;
+        }
+
+        p {
+            text-indent: 2em;
+        }
+
+        li a {
+            width: 90% !important;
+        }
+    </style>
+</head>
+<body>
+<!--导航-->
+<nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small"
+     style="width: 18%;height: 100vh;float: left;position: fixed">
+    <div class="ui container">
+        <!--为了适应手机端查看页面，添加stackable属性，代表可堆叠，给grid之前加上stackable-->
+        <div class="ui inverted secondary stackable menu">
+            <ul>
+                <li>
+                    <h2 class="ui teal header item" style="color: #7F007F !important;">嵌入式数据结构</h2>
+                </li>
+                <li>
+                    <a href="array.html" class="m-item item m-mobile-hide"> 数组</a>
+                </li>
+                <li>
+                    <a href="stack and queue.html" class="m-item item m-mobile-hide"> 栈和队列</a>
+                </li>
+                <li>
+                    <a href="Linear and linked lists.html" class="m-item item m-mobile-hide"> 线性表和链表</a>
+                </li>
+
+                <li>
+                    <a href="tree.html" class="active m-item item m-mobile-hide"> 树</a>
+                </li>
+                <li>
+                    <a href="graph.html" class="m-item item m-mobile-hide"> 图</a>
+                </li>
+                <li>
+                    <a href="sort.html" class="m-item item m-mobile-hide"> 排序</a>
+                </li>
+                <li>
+                    <div class="right m-item item m-mobile-hide">
+                        <!-- transparent搜索框显示为透明 inverted颜色反转 -->
+                        <div class="ui icon inverted transparent input">
+                            <input type="text" placeholder="Search....">
+                            <i class="search link icon"></i>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- 点击再显示，加一个图标  menu toggle只是为了使用，另一种方法也可以用id  -->
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<!--中间内容-->
+
+<div class="m-container-small m-padded-tb-big" style="width: 82%;float: left;margin-left: 18% !important">
+    <div class="ui container">
+        <div class="ui top attached segment">
+            <!--头部-->
+            <div class="ui  horizontal link list">
+                <div class="item">
+                    <img src="./images/small.jpg" alt="" class="ui avatar image">
+                    <div class="content"><a href="#" class="header">王晶</a></div>
+                </div>
+                <div class="item">
+                    <i class="calendar icon"></i>2020-08-15
+                </div>
+                <div class="item">
+                    <i class="eye icon"></i>666
+                </div>
+            </div>
+        </div>
+        <div class="ui  attached segment">
+            <!--图片区域-->
+            <img src="./images/tree1.jpg" alt="" class="ui fluid rounded image">
+        </div>
+        <div class="ui attached padded segment">
+            <!--内容部分-->
+            <div class="ui right aligned basic segment">
+                <div class="ui orange basic label" style="width: 77px;height: 49px;font-size: 20px;">原创</div>
+            </div>
+            <h2 class="ui center aligned header">树</h2>
+            <br>
+            <div id="content" class="typo typo-selection js-toc-content  m-padded-lr-responsive m-padded-tb-large">
+                <h2>一、树的定义</h2>
+                <p>树（tree）是包含n（n>=1）个结点，(n-1)条边的有穷集，其中：<br>
+                <ol>
+                    <li>1) 每个元素称为结点（node）。</li>
+                    <li>2)有一个特定的结点被称为根结点或树根（root）。</li>
+                    <li>3) 除根结点之外的其余数据元素被分为m（m≥0）
+                        个互不相交的集合T1，T2，……Tm-1，其中每一个集合Ti（1<=i<=m）本身也是一棵树，被称作原树的子树（subtree）。
+                    </li>
+                </ol>
+                <p>树也可以这样定义：树是由根结点和若干颗子树构成的。
+                    树是由一个集合以及在该集合上定义的一种关系构成的。集合中的元素称为树的结点，
+                    所定义的关系称为父子关系。父子关系在树的结点之间建立了一个层次结构。
+                    在这种层次结构中有一个结点具有特殊的地位，这个结点称为该树的根结点，或称为树根。</p>
+                <p>我们可以形式地给出树的递归定义如下:单个结点是一棵树，
+                    树根就是该结点本身。设T1,T2,..,Tk是树，它们的根结点分别为n1,n2,..,nk。
+                    用一个新结点n作为n1,n2,..,nk的父亲，则得到一棵新树，结点n就是新树的根。
+                    我们称n1,n2,..,nk为一组兄弟结点，它们都是结点n的子结点。我们还称T1,T2,..,Tk为结点n的子树。
+                    空集合也是树，称为空树。空树中没有结点。</p>
+                <p>结点的度：一个结点含有的子结点的个数称为该结点的度；</p>
+                <p>叶结点或终端结点：度为0的结点称为叶结点；</p>
+                <p>非终端结点或分支结点：度不为0的结点；</p>
+                <p>双亲结点或父结点：若一个结点含有子结点，则这个结点称为其子结点的父结点；</p>
+                <p>孩子结点或子结点：一个结点含有的子树的根结点称为该结点的子结点；</p>
+                <p>兄弟结点：具有相同父结点的结点互称为兄弟结点；</p>
+                <p>树的度：一棵树中，最大的结点的度称为树的度；</p>
+                <p>结点的层次：从根开始定义起，根为第1层，根的子结点为第2层，以此类推；
+                    树的高度或深度：树中结点的最大层次；堂兄弟结点：双亲在同一层的结点互为堂兄弟；
+                    结点的祖先：从根到该结点所经分支上的所有结点；
+                    子孙：以某结点为根的子树中任一结点都称为该结点的子孙；森林：由m（m>=0）棵互不相交的树的集合称为森林。</p>
+                <!-- <h4>现状和如何去做：</h4> -->
+                <h2>二、树的分类</h2>
+                <p class="typo-first">树主要分为以下几种类型：
+                <ol>
+                    <li>1) 无序树：树中任意节点的子结点之间没有顺序关系，这种树称为无序树,也称为自由树；</li>
+                    <li>2) 有序树：树中任意节点的子结点之间有顺序关系，这种树称为有序树；</li>
+                    <li>3) 二叉树：每个节点最多含有两个子树的树称为二叉树；</li>
+                    <li>4)满二叉树：叶节点除外的所有节点均含有两个子树的树被称为满二叉树；</li>
+                    <li>5)完全二叉树：有个节点的满二叉树称为完全二叉树；</li>
+                    <li>6)哈夫曼树（最优二叉树）：带权路径最短的二叉树称为哈夫曼树或最优二叉树。</li>
+                </ol>
+                </p>
+                <h4><strong>1.二叉树</strong></h4>
+                <p>二叉树的每个结点至多只有二棵子树(不存在度大于2的结点)，二叉树的子树有左右之分，次序不能颠倒。
+                    二叉树的第i层至多有2i-1个结点；深度为k的二叉树至多有2k-1个结点；
+                    对任何一棵二叉树T，如果其终端结点数为n0，度为2的结点数为n2，则n0=n2+1。</p>
+                <p><a href="http://html5doctor.com/u-element/">二叉树示例:</a></p>
+                <img src="./images/tree2.jpg" alt="" class="ui rounded image">
+                <p></p>
+                <p>二叉树分为满二叉树和完全二叉树：</p>
+                <p>满二叉树：除最后一层无任何子节点外，每一层上的所有结点都有两个子结点。也可以这样理解，
+                    除叶子结点外的所有结点均有两个子结点。节点数达到最大值，所有叶子结点必须在同一层上。满二叉树的性质：</p>
+                <ol>
+                    <li>1) 一颗树深度为h，最大层数为k，深度与最大层数相同，k=h；</li>
+                    <li>2) 叶子数为2h；第k层的结点数是：2k-1；</li>
+                    <li>3) 总结点数是：2k-1，且总节点数一定是奇数。</li>
+                </ol>
+                <p>完全二叉树：若设二叉树的深度为h，除第 h 层外，其它各层 (1～(h-1)层) 的结点数都达到最大个数，
+                    第h层所有的结点都连续集中在最左边，这就是完全二叉树。
+                    注：完全二叉树是效率很高的数据结构，堆是一种完全二叉树或者近似完全二叉树，
+                    所以效率极高，像十分常用的排序算法、Dijkstra算法、Prim算法等都要用堆才能优化，
+                    二叉排序树的效率也要借助平衡性来提高，而平衡性基于完全二叉树。</p>
+                <p><a href="http://html5doctor.com/u-element/">满二叉树和完全二叉树示例:</a></p>
+                <img src="./images/tree3.png" alt="" class="ui rounded image">
+                <p></p>
+                <h4><strong>2.二叉查找树</strong></h4>
+                <p>二叉查找树定义：又称为是二叉排序树或二叉搜索树。二叉排序树或者是一棵空树，或者是具有下列性质的二叉树：</p>
+                <ol>
+                    <li>1) 若左子树不空，则左子树上所有结点的值均小于它的根结点的值；</li>
+                    <li>2) 若右子树不空，则右子树上所有结点的值均大于或等于它的根结点的值；</li>
+                    <li>3) 左、右子树也分别为二叉排序树</li>
+                    <li>4) 没有键值相等的节点。</li>
+                </ol>
+                <p>二叉查找树的性质：对二叉查找树进行中序遍历，即可得到有序的数列。二叉查找树的高度决定了二叉查找树的查找效率。</p>
+                <p>二叉查找树的时间复杂度：它和二分查找一样，
+                    插入和查找的时间复杂度均为O(logn)，但是在最坏的情况下仍然会有O(n)的时间复杂度。
+                    原因在于插入和删除元素的时候，树没有保持平衡。
+                    我们追求的是在最坏的情况下仍然有较好的时间复杂度，这就是平衡查找树设计的初衷。</p>
+                <p>二叉查找树的插入过程如下：</p>
+                <ol>
+                    <li>1) 若当前的二叉查找树为空，则插入的元素为根节点;</li>
+                    <li>2) 若插入的元素值小于根节点值，则将元素插入到左子树中;</li>
+                    <li>3) 若插入的元素值不小于根节点值，则将元素插入到右子树中。</li>
+                </ol>
+                <p>二叉查找树的删除，分三种情况进行处理：</p>
+                <ol>
+                    <li>1) p为叶子节点，直接删除该节点，再修改其父节点的指针（注意分是根节点和不是根节点）;</li>
+                    <li>2) p为单支节点（即只有左子树或右子树）。让p的子树与p的父亲节点相连，删除p即可（注意分是根节点和不是根节点）;</li>
+                    <li>3) p的左子树和右子树均不空。找到p的后继y，因为y一定没有左子树，所以可以删除y，
+                        并让y的父亲节点成为y的右子树的父亲节点，并用y的值代替p的值；或者方法二是找到p的前驱x，x一定没有右子树，
+                        所以可以删除x，并让x的父亲节点成为y的左子树的父亲节点。
+                    </li>
+                </ol>
+                <h4><strong>3.平衡二叉树</strong>
+                    <h4>
+                        <p>我们知道，对于一般的二叉搜索树（Binary Search Tree），其期望高度（即为一棵平衡树时）为log2n，
+                            其各操作的时间复杂度O(log2n)同时也由此而决定。
+                            但是，在某些极端的情况下（如在插入的序列是有序的时），二叉搜索树将退化成近似链或链，
+                            此时，其操作的时间复杂度将退化成线性的，即O(n)。</p>
+                        <p>我们可以通过随机化建立二叉搜索树来尽量的避免这种情况，
+                            但是在进行了多次的操作之后，由于在删除时，我们总是选择将待删除节点的后继代替它本身，
+                            这样就会造成总是右边的节点数目减少，以至于树向左偏沉。这同时也会造成树的平衡性受到破坏，提高它的操作的时间复杂度。
+                            于是就有了我们下边介绍的平衡二叉树。</p>
+                        <p>平衡二叉树（Balanced Binary Tree）又被称为AVL树（有别于AVL算法），
+                            且具有以下性质：它是一棵空树或它的左右两个子树的高度差的绝对值不超过1，
+                            并且左右两个子树都是一棵平衡二叉树。平衡二叉树的常用算法有红黑树、AVL树等。
+                            在平衡二叉搜索树中，我们可以看到，其高度一般都良好地维持在O(log2n)，大大降低了操作的时间复杂度。</p>
+                        <p>最小二叉平衡树的节点的公式如下：F(n)=F(n-1)+F(n-2)+1 <br>
+                            这个类似于一个递归的数列，可以参考Fibonacci数列，1是根节点，F(n-1)是左子树的节点数量，F(n-2)是右子树的节点数量</p>
+                        <p><a href="http://html5doctor.com/u-element/">平衡二叉树示例:</a></p>
+                        <img src="./images/tree4.png" alt="" class="ui rounded image">
+                        <p></p>
+                        <h4><strong>4.红黑树</strong></h4>
+                        <p>红黑树是一种自平衡二叉树，在平衡二叉树的基础上每个节点又增加了一个颜色的属性，节点的颜色只能是红色或黑色。具有以下性质：</p>
+                        <ol>
+                            <li>1) 根节点只能是黑色;</li>
+                            <li>2) 红黑树中所有的叶子节点后面再接上左右两个空节点，这样可以保持算法的一致性，而且所有的空节点都是黑色;</li>
+                            <li>3) 其他的节点要么是红色，要么是黑色，红色节点的父节点和左右孩子节点都是黑色，及黑红相间;</li>
+                            <li>4) 在任何一棵子树中，从根节点向下走到空节点的路径上所经过的黑节点的数目相同，从而保证了是一个平衡二叉树。</li>
+                        </ol>
+                        <p><a href="http://html5doctor.com/u-element/">红黑树示例:</a></p>
+                        <img src="./images/tree5.png" alt="" class="ui rounded image">
+                        <p></p>
+
+                        <h2>三、树的存储</h2>
+
+                        <p>计算机的内存是线性的, 而树是非线性的数据结构,
+                            如何将非线性的树状结构在线性的内存中存储起来,这是一个值得探讨的问题。目前主要有以下几种存储方式：</p>
+
+                        <h4><strong>1.双亲表示法：</strong></h4>
+                        <p>实现:通常用一个二维数组，在存储结点的同时也将对应节点的父节点存储进来。</p>
+                        <p>特点:找父节点容易、找子节点难。 </p>
+                        <p><a href="http://html5doctor.com/u-element/">双亲表示法示例:</a></p>
+                        <img src="./images/tree6.png" alt="" class="ui rounded image">
+                        <p></p>
+                        <h4><strong>2.孩子表示法：</strong></h4>
+                        <p>实现：每个结点都存储在一个二维数组的第一列里面，多个子节点之间以链表方式连接，
+                            最后一个子节点的指向为NULL，数组的第二个元素指向其子节点链表的起始地址。</p>
+                        <p>特点:找子节点容易，找父节点难。 </p>
+                        <p><a href="http://html5doctor.com/u-element/">孩子表示法示例:</a></p>
+                        <img src="./images/tree7.png" alt="" class="ui rounded image">
+                        <p></p>
+
+                        <h4><strong>3.双亲孩子表示法：</strong></h4>
+
+                        <p>实现:将双亲表示法与孩子表示法综合起来，既存储父节点的下标，又指向子节点链表。</p>
+                        <p>特点:找父节点与子节点都比较方便，但相对前面两种复杂度有一定程度的提升。</p>
+                        <p><a href="http://html5doctor.com/u-element/">双亲孩子表示法示例:</a></p>
+                        <img src="./images/tree8.png" alt="" class="ui rounded image">
+                        <p></p>
+                        <h4><strong>4.二叉树存储：</strong></h4>
+                        <p>实现:二叉树存储就是将普通的树转换成二叉树后再进行存储，二叉树的存储将另作讨论。</p>
+                        <p>特点:将普通树转换成二叉树有一个方法，左孩子右兄弟法，就是说从根节点开始，每个节点的左子节点存储它的一个孩子，右子节点存储它的一个兄弟。 </p>
+                        <p><a href="http://html5doctor.com/u-element/">二叉树存储示例:</a></p>
+                        <img src="./images/tree9.png" alt="" class="ui rounded image">
+                        <p></p>
+
+
+            </div>
+            <div class="ui attached positive message ">
+                <!--博客信息说明-->
+                <div class="ui middle aligned grid">
+                    <div class="eleven wide column">
+                        <ui class=" list">
+                            <li>文档作者：王晶</li>
+                            <li>发表时间：2020-08-15</li>
+                            <!-- <li>版权声明：不可转载-非商用-非衍生-保持署名</li> -->
+                            <li>文档转载：请添加右侧作者微信二维码</li>
+                        </ui>
+                    </div>
+                    <div class="five wide column">
+                        <img src="./images/wechat.jpg" alt="" class="ui right floated rounded bordered image"
+                             style="width: 110px">
+                    </div>
+                </div>
+            </div>
+            <div id="comment-container" class="ui bottom attached segment">
+                <!--留言区域列表-->
+                <!-- <div class="ui teal segment">
+                  <div class="ui comments">
+                    <h3 class="ui dividing header"><trans oldtip="Comments" newtip="评论意见">Comments</trans></h3>
+                      <div class="comment">
+                        <a class="avatar">
+                        <img src="https://picsum.photos/id/1001/200/200">
+                        </a>
+                     <div class="content">
+                     <a class="author"><trans oldtip="Matt" newtip="马特">Matt</trans></a>
+                    <div class="metadata">
+                      <span class="date"><trans oldtip="Today at 5:42PM" newtip="今天下午5：42">Today at 5:42PM</trans></span>
+                    </div>
+                    <div class="text"><trans oldtip=" How artistic! " newtip="多么艺术啊！"> How artistic! </trans></div>
+                    <div class="actions">
+                    <a class="reply">回复</a>
+                  </div>
+                 </div>
+                     </div>
+                 <div class="comment">
+                  <a class="avatar">
+                    <img src="https://picsum.photos/id/1002/200/200">
+                  </a>
+                 <div class="content">
+                   <a class="author"><trans oldtip="Elliot Fu" newtip="艾略特">Elliot Fu</trans></a>
+                   <div class="metadata">
+                     <span class="date"><trans oldtip="Yesterday at 12:30AM" newtip="昨天中午12：30">Yesterday at 12:30AM</trans></span>
+                   </div> -->
+                <!-- <div class="text">
+                  <p><trans oldtip="This has been very useful for my research. Thanks as well!" newtip="这对我的研究非常有用。也谢谢你！">This has been very useful for my research. Thanks as well!</trans></p>
+                </div> -->
+                <!-- <div class="actions">
+                  <a class="reply">回复</a>
+                </div> -->
+            </div>
+            <!-- <div class="comments">
+              <div class="comment">
+                <a class="avatar">
+                  <img src="https://picsum.photos/id/1003/200/200">
+                </a>
+                <div class="content">
+                  <a class="author"><trans oldtip="Jenny Hess" newtip="珍妮·赫斯">Jenny Hess</trans></a>
+                  <div class="metadata">
+                    <span class="date"><trans oldtip="Just now" newtip="刚才">Just now</trans></span>
+                  </div>
+                  <div class="text"><trans oldtip=" Elliot you are always so right :) " newtip="埃利奥特，你总是那么正确：)"> Elliot you are always so right :) </trans></div>
+                  <div class="actions">
+                    <a class="reply">回复</a>
+                  </div>
+                </div>
+              </div> -->
+        </div>
+    </div>
+    <!-- <div class="comment">
+      <a class="avatar">
+        <img src="https://picsum.photos/id/1004/200/200">
+      </a>
+      <div class="content">
+        <a class="author"><trans oldtip="Joe Henderson" newtip="乔·亨德森">Joe Henderson</trans></a>
+        <div class="metadata">
+          <span class="date"><trans oldtip="5 days ago" newtip="5天前">5 days ago</trans></span>
+        </div>
+        <div class="text"><trans oldtip=" Dude, this is awesome. Thanks so much " newtip="伙计，这太棒了。非常感谢"> Dude, this is awesome. Thanks so much </trans></div>
+         <div class="actions">
+          <a class="reply">回复</a>
+        </div> -->
+</div>
+-->
+<div class="m-padded m-fixed m-right-bottom ">
+    <div class="ui vertical icon buttons ">
+        <!--     <button type="button" class="ui toc teal button">目录</button>-->
+        <a href="#comment-container" class="ui teal button">作者</a>
+        <!--     <button type="button" class="ui wechat icon button"><i class="weixin icon"></i> </button>-->
+
+
+        <a href="#" class="ui icon button"><i class="chevron up icon"></i></a>
+        <!--直接返回顶部修改为平滑滚动到顶部-->
+        <!--<div id="toTop-button" class="ui icon button"><i class="chevron up icon"></i> </div>-->
+    </div>
+    <!--生成二维码  将已经写死的二维码注释掉，既可以随机生成二维码-->
+    <div id="qrcode" class="ui wechat-qr flowing popup transition hidden " style="width: 130px !important;">
+        <!--
+          <div id="qrcode" class="ui wechat-qr flowing popup transition hidden m-padded-mini" style="width: 130px !important;">
+          <img src="images/wechat.jpg" alt="" class="ui rounded image "  style="width:120px !important;">
+        -->
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<!--<script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>-->
+
+<script src="..//static/lib/prism/prism.js"></script>
+<script src="..//static/lib/tocbot/tocbot.min.js"></script>
+<script src="..//static/lib/qrcode/qrcode.min.js"></script>
+</body>
+</html>

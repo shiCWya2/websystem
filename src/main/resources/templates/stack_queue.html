@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>栈和队列详情</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="./css/typo.css">
+    <link rel="stylesheet" href="./lib/prism/prism.css">
+    <link rel="stylesheet" href="./lib/tocbot/tocbot.css">
+    <link rel="stylesheet" href="./css/me.css">
+    <style>
+        li {
+            list-style-type: none;
+        }
+
+        p {
+            text-indent: 2em;
+        }
+
+        li a {
+            width: 90% !important;
+        }
+    </style>
+</head>
+<body>
+<!--导航-->
+<nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small"
+     style="width: 18%;height: 100vh;float: left;position: fixed">
+    <div class="ui container">
+        <!--为了适应手机端查看页面，添加stackable属性，代表可堆叠，给grid之前加上stackable-->
+        <div class="ui inverted secondary stackable menu">
+            <ul>
+                <li>
+                    <h2 class="ui teal header item" style="color: #7F007F !important;">嵌入式数据结构</h2>
+                </li>
+                <li>
+                    <a href="array.html" class="m-item item m-mobile-hide"> 数组</a>
+                </li>
+                <li>
+                    <a href="stack and queue.html" class="active m-item item m-mobile-hide"> 栈和队列</a>
+                </li>
+                <li>
+                    <a href="Linear and linked lists.html" class="m-item item m-mobile-hide"> 线性表和链表</a>
+                </li>
+
+                <li>
+                    <a href="tree.html" class="m-item item m-mobile-hide"> 树</a>
+                </li>
+                <li>
+                    <a href="graph.html" class="m-item item m-mobile-hide"> 图</a>
+                </li>
+                <li>
+                    <a href="sort.html" class="m-item item m-mobile-hide"> 排序</a>
+                </li>
+                <li>
+                    <div class="right m-item item m-mobile-hide">
+                        <!-- transparent搜索框显示为透明 inverted颜色反转 -->
+                        <div class="ui icon inverted transparent input">
+                            <input type="text" placeholder="Search....">
+                            <i class="search link icon"></i>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- 点击再显示，加一个图标  menu toggle只是为了使用，另一种方法也可以用id  -->
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<!--中间内容-->
+
+<div class="m-container-small m-padded-tb-big" style="width: 82%;float: left;margin-left: 18% !important">
+    <div class="ui container">
+        <div class="ui top attached segment">
+            <!--头部-->
+            <div class="ui  horizontal link list">
+                <div class="item">
+                    <img src="./images/small.jpg" alt="" class="ui avatar image">
+                    <div class="content"><a href="#" class="header">王晶</a></div>
+                </div>
+                <div class="item">
+                    <i class="calendar icon"></i>2020-08-15
+                </div>
+                <div class="item">
+                    <i class="eye icon"></i>666
+                </div>
+            </div>
+        </div>
+        <div class="ui  attached segment">
+            <!--图片区域-->
+            <!--图片区域-->
+            <img src="./images/stack5.jpg" alt="" class="ui fluid rounded image">
+        </div>
+        <div class="ui attached padded segment">
+            <!--内容部分-->
+            <div class="ui right aligned basic segment">
+                <div class="ui orange basic label" style="width: 77px;height: 49px;font-size: 20px;">原创</div>
+            </div>
+            <h2 class="ui center aligned header">栈和队列</h2>
+            <br>
+            <div id="content" class="typo typo-selection js-toc-content  m-padded-lr-responsive m-padded-tb-large">
+                <h2>一、栈</h2>
+                <h4><strong>1.栈的定义</strong></h4>
+                <p>栈是一种操作受限的线性表只允许从一端插入和删除数据。栈有两种存储方式，即线性存储和链接存储（链表）。
+                    栈的一个最重要的特征就是栈的插入和删除只能在栈顶进行，所以每次删除的元素都是最后进栈的元素，故栈也被称为后进先出（LIFO）表。限定只能在表的一端进行插入和删除操作运算的线性表（只能在栈顶操作）。</p>
+                <p>每个栈都有一个栈顶指针，它初始值为-1，且总是指向最后一个入栈的元素，栈有两种处理方式，即进栈（push）和出栈（pop），
+                    因为在进栈只需要移动一个变量存储空间，所以它的时间复杂度为O(1)，但是对于出栈分两种情况，栈未满时，时间复杂度也为O(1)，
+                    但是当栈满时，需要重新分配内存，并移动栈内所有数据，所以此时的时间复杂度为O(n)。以下举例栈结构的两种实现方式，线性存储和链接存储。</p>
+                <p>栈的逻辑结构为同线性表一样栈元素具有线性关系即前驱后继关系（一对一）；栈的存储结构为顺序栈和链栈均可，顺序栈更常见；栈的运算结构为只能在栈顶运算且访问节点时依照后进后出的原则（LIFO）。</p>
+                <p>栈的实现方式：关键是编写入栈和出栈函数具体实现依顺序栈和链栈的不同而不同，栈和线性表唯一的区别在于运算规则。
+                    线性表插入删除位置任意而栈只能对表尾（栈顶）的元素进行插入和删除操作（后进先出的原则）</p>
+                <p><a href="http://html5doctor.com/u-element/">栈示例:</a></p>
+                <img src="./images/stcak1.png" alt="" class="ui rounded image">
+                <p></p>
+                <h4><strong>2.栈的分类</strong></h4>
+                <p>栈主要分为两类：静态栈和动态栈
+                <ol>
+                    <li>1) 静态栈的核心是数组，类似于一个连续内存的数组，我们只能操作其栈顶元素；</li>
+                    <li>2) 静态栈的核心是数组，类似于一个连续内存的数组，我们只能操作其栈顶节点。</li>
+                </ol>
+                </p>
+                <p><a href="http://html5doctor.com/u-element/">静态栈和动态栈示例:</a></p>
+                <img src="./images/stack2.png" alt="" class="ui rounded image">
+                <p></p>
+                <h4><strong>3.栈的数据结构</strong></h4>
+                <p>栈是一种简单的数据存储结构，是一种特殊的线性表，与链表和顺序表一样，只是在数据的存储上不同，栈只允许从一端存储或取出元素，一般将存储或取出元素的一端称为栈顶，
+                    另一端不可操作，称为栈底，同时把存储元素称为入栈（push），取出元素称为出栈（pop），如果没有任何元素，称为空栈。</p>
+                <p>从下图中可以看到，入栈和出栈都是从栈顶操作，而栈顶指针总是指向第一个元素，因此可以看出栈的特点是FILO(First In Last Out)先进后出，
+                    栈的基本操作创建栈，判空，入栈，出栈，获取栈顶元素等，注意栈不支持对指定位置进行删除，插入。 </p>
+                <p><a href="http://html5doctor.com/u-element/">入栈出栈示例:</a></p>
+                <img src="./images/stack3.png" alt="" class="ui rounded image">
+                <p></p>
+                <h4><strong>4.栈的经典使用</strong></h4>
+                <p>符号匹配：编写程序的时候我们经常会用到括号（）或者{}，程序如何校验我们编写的程序是否少或者多了这种符号，或者个数正确的基础上检核是否匹配，
+                    事实上，编译器也是借助于栈这种数据结构来对语法做检核的，比如下面的例子。对字符串（str=”((5-3)*8-2)”）做语法检核</p>
+                <p></p>
+                <p>语法检核流程如下：
+                <ol>
+                    <li>1) 从左到右依次对字符串str中的每个字符char进行语法检测，如果char是，左括号则入栈，
+                        如果char是右括号则出栈(有一对匹配就可以去匹配一个左括号，因此可以出栈)，若此时出栈的字符char为左括号，
+                        则说明这一对括号匹配正常，如果此时栈为空或者出栈字符不为左括号，则表示缺少与char匹配的左括号，即目前不完整；
+                    </li>
+                    <li>2) 重复执行1操作，直到str检测结束，如果此时栈为空，则全部括号匹配，如果栈中还有左括号，是说明缺少右括号。</li>
+                </ol>
+                </p>
+                <p><a href="http://html5doctor.com/u-element/">符号匹配示例:</a></p>
+                <img src="./images/stack4.png" alt="" class="ui rounded image">
+                <p></p>
+                <h2>二、队列</h2>
+                <h4><strong>1.队列的定义</strong></h4>
+                <p>队列（queue）是一种特殊的线性表，特殊之处在于它只允许在表的前端（front）进行删除操作，而在表的后端（rear）进行插入操作，
+                    和栈一样，队列是一种操作受限制的线性表。进行插入操作的端称为队尾，进行删除操作的端称为队头。队列中没有元素时，称为空队列。</p>
+                <p>队列的数据元素又称为队列元素。在队列中插入一个队列元素称为入队，从队列中删除一个队列元素称为出队。因为队列只允许在一端插入，
+                    在另一端删除，所以只有最早进入队列的元素才能最先从队列中删除，故队列又称为先进先出（FIFO—first in first out）线性表。</p>
+                <p>比如我们去电影院排队买票，第一个进入排队序列的都是第一个买到票离开队列的人，而最后进入排队序列排队的都是最后买到票的。
+                    在比如在计算机操作系统中，有各种队列在安静的工作着，比如打印机在打印列队中等待打印。</p>
+                <p>队列分为：单向队列（Queue）：只能在一端插入数据，另一端删除数据。双向队列（Deque）：每一端都可以进行插入数据和删除数据操作。
+                    还有一种队列——优先级队列，优先级队列是比栈和队列更专用的数据结构，在优先级队列中，数据项按照关键字进行排序，
+                    关键字最小（或者最大）的数据项往往在队列的最前面，而数据项在插入的时候都会插入到合适的位置以确保队列的有序。
+                </p>
+                <p>关于队列的扩展:循环队列结构中，当存储空间的最后一个位置已被使用而再要进入队运算时，只需要存储空间的第一个位置空闲，
+                    便可将元素加入到第一个位置，即将存储空间的第一个位置作为队尾。循环队列可以更简单防止伪溢出的发生，但队列大小是固定的。
+                    在循环队列中，当队列为空时，有front=rear，而当所有队列空间全占满时，也有front=rear。为了区别这两种情况，规定循环队列最多只能有MaxSize-1个队列元素，
+                    当循环队列中只剩下一个空存储单元时，队列就已经满了。因此，队列判空的条件是front=rear，而队列判满的条件是front=（rear+1)%MaxSize</p>
+                <h4><strong>2.队列的分类</strong></h4>
+                <p>从顺序队列的出队操作可以看出，当删除一个元素时，队列中的元素都要向前移动一个位置。为了解决这个问题，这里介绍下循环队列</p>
+                <p>我们可以将队列看成一个首位相连的环。当一个元素从队列删除后，新空余出来的空间可以作为队列的尾部。如图下所示。</p>
+                <p><a href="http://html5doctor.com/u-element/">循环队列示例:</a></p>
+                <img src="./images/queue6.jpg" alt="" class="ui rounded image">
+                <p></p>
+                <p>链型队列：在队列的链式存储结构中，可用不含头节点的链表表示。定义队列包含两个节点，其中一个为front指针指向表头，另一个为rear指针指向表尾。链队不存在满队的情况。
+                </p>
+                <h4><strong>3.队列的存储结构</strong></h4>
+                <p>以下采用数组实现，初始化一个队列长度为6，队列有两个标记，一个队头的位置head，一个队尾的位置tail，初始都指向数组下标为0的位置，如图所示：</p>
+                <p><a href="http://html5doctor.com/u-element/">顺序队列存储结构示例:</a></p>
+                <img src="./images/queue1.jpg" alt="" class="ui rounded image">
+                <p></p>
+                <p>在插入元素时，tail标记+1，比如入队三个元素，依次为A，B，C（注意是有顺序的），则当前队列存储情况如图：</p>
+                <p><a href="http://html5doctor.com/u-element/">当前存储结构示例:</a></p>
+                <img src="./images/queue2.jpg" alt="" class="ui rounded image">
+                <p></p>
+                <p>当前head为0，tail为3，接下来进行出队操作，此处将A元素出队，则head+1，此时队列的存储情况如图：</p>
+                <p><a href="http://html5doctor.com/u-element/">当前存储结构示例:</a></p>
+                <img src="./images/queue3.jpg" alt="" class="ui rounded image">
+                <p></p>
+                <p>根据上面的图例，我们可以通过tail-head获得队列中元素的个数。当tail==head时，此时队列为空，而当tail等于数组长度时，此时将无法出入元素，那么队列是否已经满呢？未必！
+                    因为head和tail在入队和出队操作中只增不减，因此head和tail都会最终指向队列之外的存储位置，此时虽然数组为空，但也无法将元素入队。</p>
+                <ol>
+                    <li>1) 上溢： 当队列中无法插入元素时，称之为上溢；</li>
+                    <li>2) 假上溢： 在顺序队列中，数组还有空间（不一定全空）但无法入队称之为假上溢；</li>
+                    <li>3) 真上溢： 如果head为0，tail指向数组之外，即数组真满了，称之为真上溢；
+                    <li>4) 下溢： 如果空队中执行出队操作，此时队列中无元素，称之为下溢。</li>
+                </ol>
+                <p>如何解决“假上溢”的问题呢？此时引入循环队列。出现假上溢时，此时数组还有空闲的位置，将tail从新指向数组的0索引处即可，如图所示：</p>
+                <p><a href="http://html5doctor.com/u-element/">顺序队列存储结构示例:</a></p>
+                <img src="./images/queue4.jpg" alt="" class="ui rounded image">
+                <p></p>
+                <p>如果继续入队E和F，则队列的存储结构如图：</p>
+                <p><a href="http://html5doctor.com/u-element/">顺序队列存储结构示例:</a></p>
+                <img src="./images/queue4.jpg" alt="" class="ui rounded image">
+                <p></p>
+                <p>通常而言，在对head和tail加1时，为了方便采用对数组长度取余操作。另外由于顺序队列存在“假上溢”的现象，所以一般用循环队列实现。</p>
+                <p>在采用循环队列实现的过程中，当队列满队时，tail等于head，而当队列空时，tail也等于head，为了区分两种状态，
+                    一般规定循环队列的长度为数组长度-1，即有一个位置不放元素，此时head==tail时为空队，而当head==(tail+1)%数组长度，说明对满。</p>
+                <h4><strong>4.队列和栈和区别</strong></h4>
+                <p>队列和栈是两种不同的数据结构。它们有以下区别：：
+                <ol>
+                    <li>1) 操作的名称不同。队列的插入称为入队，队列的删除称为出队。栈的插入称为进栈，栈的删除称为出栈；</li>
+                    <li>2) 可操作的方式不同。队列是在队尾入队，队头出队，即两边都可操作。而栈的进栈和出栈都是在栈顶进行的，无法对栈底直接进行操作；</li>
+                    <li>3) 操作的方法不同。队列是先进先出（FIFO），即队列的修改是依先进先出的原则进行的。新来的成员总是加入队尾（不能从中间插入），
+                        每次离开的成员总是队列头上（不允许中途离队）。而栈为后进先出（LIFO）,
+                        即每次删除（出栈）的总是当前栈中最新的元素，即最后插入（进栈）的元素，而最先插入的被放在栈的底部，要到最后才能删除。
+                    </li>
+                </ol>
+                </p>
+            </div>
+            <div class="ui attached positive message ">
+                <!--博客信息说明-->
+                <div class="ui middle aligned grid">
+                    <div class="eleven wide column">
+                        <ui class=" list">
+                            <li>文档作者：王晶</li>
+                            <li>发表时间：2020-08-15</li>
+                            <!-- <li>版权声明：不可转载-非商用-非衍生-保持署名</li> -->
+                            <li>文档转载：请添加右侧作者微信二维码</li>
+                        </ui>
+                    </div>
+                    <div class="five wide column">
+                        <img src="./images/wechat.jpg" alt="" class="ui right floated rounded bordered image"
+                             style="width: 110px">
+                    </div>
+                </div>
+            </div>
+            <div id="comment-container" class="ui bottom attached segment">
+                <!--留言区域列表-->
+                <!-- <div class="ui teal segment">
+                  <div class="ui comments">
+                    <h3 class="ui dividing header"><trans oldtip="Comments" newtip="评论意见">Comments</trans></h3>
+                      <div class="comment">
+                        <a class="avatar">
+                        <img src="https://picsum.photos/id/1001/200/200">
+                        </a>
+                     <div class="content">
+                     <a class="author"><trans oldtip="Matt" newtip="马特">Matt</trans></a>
+                    <div class="metadata">
+                      <span class="date"><trans oldtip="Today at 5:42PM" newtip="今天下午5：42">Today at 5:42PM</trans></span>
+                    </div>
+                    <div class="text"><trans oldtip=" How artistic! " newtip="多么艺术啊！"> How artistic! </trans></div>
+                    <div class="actions">
+                    <a class="reply">回复</a>
+                  </div>
+                 </div>
+                     </div>
+                 <div class="comment">
+                  <a class="avatar">
+                    <img src="https://picsum.photos/id/1002/200/200">
+                  </a>
+                 <div class="content">
+                   <a class="author"><trans oldtip="Elliot Fu" newtip="艾略特">Elliot Fu</trans></a>
+                   <div class="metadata">
+                     <span class="date"><trans oldtip="Yesterday at 12:30AM" newtip="昨天中午12：30">Yesterday at 12:30AM</trans></span>
+                   </div> -->
+                <!-- <div class="text">
+                  <p><trans oldtip="This has been very useful for my research. Thanks as well!" newtip="这对我的研究非常有用。也谢谢你！">This has been very useful for my research. Thanks as well!</trans></p>
+                </div> -->
+                <!-- <div class="actions">
+                  <a class="reply">回复</a>
+                </div> -->
+            </div>
+            <!-- <div class="comments">
+              <div class="comment">
+                <a class="avatar">
+                  <img src="https://picsum.photos/id/1003/200/200">
+                </a>
+                <div class="content">
+                  <a class="author"><trans oldtip="Jenny Hess" newtip="珍妮·赫斯">Jenny Hess</trans></a>
+                  <div class="metadata">
+                    <span class="date"><trans oldtip="Just now" newtip="刚才">Just now</trans></span>
+                  </div>
+                  <div class="text"><trans oldtip=" Elliot you are always so right :) " newtip="埃利奥特，你总是那么正确：)"> Elliot you are always so right :) </trans></div>
+                  <div class="actions">
+                    <a class="reply">回复</a>
+                  </div>
+                </div>
+              </div> -->
+        </div>
+    </div>
+    <!-- <div class="comment">
+      <a class="avatar">
+        <img src="https://picsum.photos/id/1004/200/200">
+      </a>
+      <div class="content">
+        <a class="author"><trans oldtip="Joe Henderson" newtip="乔·亨德森">Joe Henderson</trans></a>
+        <div class="metadata">
+          <span class="date"><trans oldtip="5 days ago" newtip="5天前">5 days ago</trans></span>
+        </div>
+        <div class="text"><trans oldtip=" Dude, this is awesome. Thanks so much " newtip="伙计，这太棒了。非常感谢"> Dude, this is awesome. Thanks so much </trans></div>
+         <div class="actions">
+          <a class="reply">回复</a>
+        </div> -->
+</div>
+-->
+<div class="m-padded m-fixed m-right-bottom ">
+    <div class="ui vertical icon buttons ">
+        <!--     <button type="button" class="ui toc teal button">目录</button>-->
+        <a href="#comment-container" class="ui teal button">作者</a>
+        <!--     <button type="button" class="ui wechat icon button"><i class="weixin icon"></i> </button>-->
+
+
+        <a href="#" class="ui icon button"><i class="chevron up icon"></i></a>
+        <!--直接返回顶部修改为平滑滚动到顶部-->
+        <!--<div id="toTop-button" class="ui icon button"><i class="chevron up icon"></i> </div>-->
+    </div>
+    <!--生成二维码  将已经写死的二维码注释掉，既可以随机生成二维码-->
+    <div id="qrcode" class="ui wechat-qr flowing popup transition hidden " style="width: 130px !important;">
+        <!--
+          <div id="qrcode" class="ui wechat-qr flowing popup transition hidden m-padded-mini" style="width: 130px !important;">
+          <img src="images/wechat.jpg" alt="" class="ui rounded image "  style="width:120px !important;">
+        -->
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<!--<script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>-->
+
+<script src="..//static/lib/prism/prism.js"></script>
+<script src="..//static/lib/tocbot/tocbot.min.js"></script>
+<script src="..//static/lib/qrcode/qrcode.min.js"></script>
+
+</body>
+</html>

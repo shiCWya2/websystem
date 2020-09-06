@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>主页面</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="./css/me.css">
+    <style>
+        li {
+            list-style-type: none;
+        }
+
+        li a {
+            width: 90% !important;
+        }
+    </style>
+</head>
+<body>
+<nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small"
+     style="width: 18%;height: 100vh;float: left;position: fixed">
+    <div class="ui container">
+        <!--为了适应手机端查看页面，添加stackable属性，代表可堆叠，给grid之前加上stackable-->
+        <div class="ui inverted secondary stackable menu">
+            <ul>
+                <li>
+                    <h2 class="ui teal header item" style="color: #7F007F !important;">嵌入式数据结构</h2>
+                </li>
+                <li>
+                    <a th:href="@{gotomanage}" class="m-item item m-mobile-hide">知识点管理</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- 点击再显示，加一个图标  menu toggle只是为了使用，另一种方法也可以用id  -->
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<!-- transparent搜索框显示为透明 inverted颜色反转 -->
+<!-- <div class="ui icon inverted transparent input">
+    <input type="text" placeholder="Search....">
+    <i class="search link icon"></i>
+</div> -->
+</div>
+</li>
+</ul>
+</div>
+</div>
+<!--点击再显示，加一个图标  menu toggle只是为了使用，另一种方法也可以用id  -->
+<!--    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">-->
+<!--        <i class="sidebar icon"></i>-->
+<!--    </a>-->
+</nav>
+
+
+<div class="m-container m-padded-tb-big" style="width: 82%;float: left;margin-left: 18% !important">
+    <div class="ui container" style="width: 100%">
+        <div class="ui stackable grid">
+            <!--左边博客列表-->
+            <div class="sixteen wide column">
+                <!--头部header-->
+                <div class="ui top attached segment">
+                    <div class="ui middle aligned two column grid">
+                        <div class="column">
+                            <h3 class="ui teal header" style="color: #7F007F!important;">数据结构知识点</h3>
+                        </div>
+                        <div class="right aligned column">
+                            <h3 class="ui orange m-inline-block m-text-thin">共<span
+                                    style="color: #7F007F;font-size: 24px">6</span>篇</h3>
+                        </div>
+                    </div>
+                </div>
+                <!--中间内容 content-->
+                <div class="ui attached segment">
+
+
+                    <div class="ui padded vertical segment m-padded-tb-big">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="eleven wide column">
+                                <h3 class="ui header">数组</h3>
+                                <p class="m-text">数据结构中最基本的一个结构就是线性结构，而线性结构又分为连续存储结构和离散存储结构。所谓的连续存储结构其实就是数组。
+                                    在数组中每个元素都具有相同的数据类型，是有序数据的集合。通俗的说数组就相当于一个容器。数组分为一维数组、二维数组和多维数组。</p>
+                                <div class="ui grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui mini horizontal link list">
+                                            <div class="item">
+                                                <!-- 小圆头像图片 -->
+                                                <img src="./images/small.jpg" alt="" class="ui avatar image">
+                                                <div class="content"><a href="#" class="header">王晶</a></div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon"></i>2020-08-15
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i>666
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right aligned five wide column">
+                                        <a th:href="@{goarray}" target="_blank"
+                                           class="ui teal basic label m-padded-small m-text-thin">知识详情</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="five wide column">
+                                <a href="#" target="_blank">
+                                    <!--https://picsum.photos/id/1005/200/200引入图片的位置--->
+                                    <img src="./images/ARRAY.png" alt="" class="ui rounded image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui padded vertical segment m-padded-tb-big">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="eleven wide column">
+                                <h3 class="ui header">栈和队列</h3>
+                                <p class="m-text">栈是一种操作受限的线性表只允许从一端插入和删除数据。栈有两种存储方式，即线性存储和链接存储（链表）。
+                                    栈的一个最重要的特征就是栈的插入和删除只能在栈顶进行，所以每次删除的元素都是最后进栈的元素，故栈也被称为后进先出（LIFO）表。限定只能在表的一端进行插入和删除操作运算的线性表（只能在栈顶操作）。</p>
+                                <div class="ui grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui mini horizontal link list">
+                                            <div class="item">
+                                                <!-- 小圆头像图片 -->
+                                                <img src="./images/small.jpg" alt="" class="ui avatar image">
+                                                <div class="content"><a href="#" class="header">王晶</a></div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon"></i>2020-08-15
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i>666
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right aligned five wide column">
+                                        <a th:href="@{gostack_queue}" target="_blank"
+                                           class="ui teal basic label m-padded-small m-text-thin">知识详情</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="five wide column">
+                                <a href="#" target="_blank">
+                                    <!--https://picsum.photos/id/1005/200/200引入图片的位置--->
+                                    <img src="./images/STACK.png" alt="" class="ui rounded image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui padded vertical segment m-padded-tb-big">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="eleven wide column">
+                                <h3 class="ui header">线性表和链表</h3>
+                                <p class="m-text">线性表的定义：线性表是具有相同数据类型的n个数据元素的有限序列。n为表长，当 n=0时，为空表。
+                                    线性表公式表示：L = （a1,a2,a3.......an）, a1 为表头元素，an为表尾元素。
+                                    除了第一个元素，每个元素都有且仅有一个直接前驱，除了最后一个元素，每个元素有且仅有一个直接后继。</p>
+                                <div class="ui grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui mini horizontal link list">
+                                            <div class="item">
+                                                <!-- 小圆头像图片 -->
+                                                <img src="./images/small.jpg" alt="" class="ui avatar image">
+                                                <div class="content"><a href="#" class="header">王晶</a></div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon"></i>2020-08-15
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i>666
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right aligned five wide column">
+                                        <a th:href="@{goLinear_linked_lists}" target="_blank"
+                                           class="ui teal basic label m-padded-small m-text-thin">知识详情</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="five wide column">
+                                <a href="#" target="_blank">
+                                    <!--https://picsum.photos/id/1005/200/200引入图片的位置--->
+                                    <img src="./images/LINEAR.png" alt="" class="ui rounded image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui padded vertical segment m-padded-tb-big">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="eleven wide column">
+                                <h3 class="ui header">树</h3>
+                                <p class="m-text">
+                                    树状图是一种数据结构，它是由n（n>=1）个有限结点组成一个具有层次关系的集合。把它叫做“树”是因为它看起来像一棵倒挂的树，也就是说它是根朝上，而叶朝下的。它具有以下的特点：
+                                    每个结点有零个或多个子结点；没有父结点的结点称为根结点；每一个非根结点有且只有一个父结点；除了根结点外，每个子结点可以分为多个不相交的子树。</p>
+                                <div class="ui grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui mini horizontal link list">
+                                            <div class="item">
+                                                <!-- 小圆头像图片 -->
+                                                <img src="./images/small.jpg" alt="" class="ui avatar image">
+                                                <div class="content"><a href="#" class="header">王晶</a></div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon"></i>2020-08-15
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i>666
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right aligned five wide column">
+                                        <a th:href="@{gotree}" target="_blank"
+                                           class="ui teal basic label m-padded-small m-text-thin">知识详情</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="five wide column">
+                                <a href="#" target="_blank">
+                                    <!--https://picsum.photos/id/1005/200/200引入图片的位置--->
+                                    <img src="./images/tree.png" alt="" class="ui rounded image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui padded vertical segment m-padded-tb-big">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="eleven wide column">
+                                <h3 class="ui header">图</h3>
+                                <p class="m-text">图：图G是由两个集合V和E所限定的一种数据结构，记作G=(V，E)，其中V是定点有限非空集合，E是表示顶点之间关系的边的集合。
+                                    在图的实际应用中，可能会同时接触若干个图，为了区别不同图的顶点集和边集，常常将图记作G=( V(G)，E(V) )。</p>
+                                <div class="ui grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui mini horizontal link list">
+                                            <div class="item">
+                                                <!-- 小圆头像图片 -->
+                                                <img src="./images/small.jpg" alt="" class="ui avatar image">
+                                                <div class="content"><a href="#" class="header">王晶</a></div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon"></i>2020-08-15
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i>666
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right aligned five wide column">
+                                        <a th:href="@{gograph}" target="_blank"
+                                           class="ui teal basic label m-padded-small m-text-thin">知识详情</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="five wide column">
+                                <a href="#" target="_blank">
+                                    <!--https://picsum.photos/id/1005/200/200引入图片的位置--->
+                                    <img src="./images/GRAPH.png" alt="" class="ui rounded image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui padded vertical segment m-padded-tb-big">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="eleven wide column">
+                                <h3 class="ui header">排序</h3>
+                                <p class="m-text">
+                                    将杂乱无章的数据元素，通过一定的方法按关键字顺序排列的过程叫做排序。非线性时间比较类排序：通过比较来决定元素间的相对次序，由于其时间复杂度不能突破O(nlogn)，因此称为非线性时间比较类排序。
+                                    线性时间非比较类排序：不通过比较来决定元素间的相对次序，它可以突破基于比较排序的时间下界，以线性时间运行，因此称为线性时间非比较类排序。</p>
+                                <div class="ui grid">
+                                    <div class="eleven wide column">
+                                        <div class="ui mini horizontal link list">
+                                            <div class="item">
+                                                <!-- 小圆头像图片 -->
+                                                <img src="./images/small.jpg" alt="" class="ui avatar image">
+                                                <div class="content"><a href="#" class="header">王晶</a></div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon"></i>2020-08-15
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i>666
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right aligned five wide column">
+                                        <a th:href="@{gosort}" target="_blank"
+                                           class="ui teal basic label m-padded-small m-text-thin">知识详情</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="five wide column">
+                                <a href="#" target="_blank">
+                                    <!--https://picsum.photos/id/1005/200/200引入图片的位置--->
+                                    <img src="./images/SORT.jpg" alt="" class="ui rounded image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!--尾部内容-->
+                <div class="ui bottom attached segment">
+                    <div class="ui middle aligned two column  grid">
+                        <div class="column">
+                            <a href="#" class="ui mini teal basic button">上一页</a>
+                        </div>
+                        <div class="right aligned column">
+                            <a href="#" class="ui mini teal basic button">下一页</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- css调底部黑色区域宽度 -->
+            <footer class="ui inverted vertical segment m-padded-tb-massive" !important>
+                <div class="ui  center aligned container" !important>
+                    <div class="ui inverted divided stackable grid">
+                        <!--grid分成16份，9份做三个盒子，剩下7份为一个盒子-->
+                        <div class="three wide column ">
+                            <div class="ui inverted  link list">
+                                <div class="item">
+                                    <!-- 二维码图片 -->
+                                    <img src="./images/wechat.jpg" class="ui rounded image " alt="" width="100px"
+                                         height="100px">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="three wide column">
+                            <h4 class="ui inverted header m-text-thin m-text-space ">最新文档</h4>
+                            <div class="ui inverted  link list">
+                                <a href="#" class="item">树</a>
+                                <a href="#" class="item">图</a>
+                                <a href="#" class="item">队列和栈</a>
+                                <a href="#" class="item">线性表和链表</a>
+                            </div>
+                        </div>
+                        <div class="three wide column">
+                            <h4 class="ui inverted header m-text-thin m-text-space ">联系我</h4>
+                            <div class="ui inverted  link list">
+                                <a href="#" class="item">Email:1553621791@qq.com</a>
+                                <a href="#" class="item">QQ:1553621791</a>
+                            </div>
+                        </div>
+                        <div class="seven wide column">
+                            <h4 class="ui inverted header m-text-thin m-text-space">Introduction</h4>
+                            <p class="m-text-thin m-text-space m-opacity-mini">
+                                这是一个数据结构知识点管理系统，包含的数据结构知识点如树、图、线性表、数组、链表、队列、栈、排序等，希望可以给大家提供帮助。</p>
+                        </div>
+                    </div>
+                    <div class="ui inverted section divider"></div>
+                    <p class="m-text-thin m-text-space m-opacity-tiny">©2020
+                        本数据结构知识点管理系统仅用于个人学习使用，不得用于其他商业用途，违反者必将追究法律责任。</p>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

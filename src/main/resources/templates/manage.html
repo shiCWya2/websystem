@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>知识点管理</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="css/datatables.css" />
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript" src="js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="js/dataTables.bootstrap.js"></script>
+
+        <!-- layer插件 -->
+    <script type="text/javascript" language="javascript" src="js/layer.js"></script>
+    <script type="text/javascript" language="javascript" src="js/layerOps.js"></script>
+    <link href="css/sweetalert.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/sweetalert.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/validformstyle.css"/>
+    <script type="text/javascript" src="js/Validform.min.js"></script>
+    <script type="text/javascript" language="javascript" src="js/base.js"></script>
+    <script type="text/javascript" language="javascript" src="js/layout.js"></script>
+</head>
+<body>
+<div id="container" >
+    <h1 style="font-weight: bold; font-family: 微软雅黑; font-size: 40px; text-align: center;padding-top: 30px;">数据结构知识点管理</h1>
+    <div style="padding-left: 50px;">
+        <form action="/gotoindex" method="post">
+            <button type="submit" class="btn btn-default"> 返回主页面</button>
+        </form>
+    </div>
+    <div>
+    <form class="form-inline search-form" action="/searchknowledge" method="post">
+        <div class="form-group">
+            <input class="form-control" type="text" name="knowledgename" placeholder="知识点名称">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-default"><span class="icon-search"></span> 搜索知识点</button>
+        </div>
+    </form>
+    <h4 th:utext="${msg5}"></h4>
+    <form class="form-inline search-form" action="/deleteknowledge" method="post">
+        <div class="form-group">
+            <input class="form-control" type="text" name="knowledgename" placeholder="知识点名称">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-default"><span class="icon-search"></span> 删除知识点</button>
+        </div>
+    </form>
+    <h4 th:utext="${msg5}"></h4>
+    </div>
+    <form class="form-inline search-form" id="sensor-search-form" action="/addknowledge" method="post">
+        <div class="form-group">
+            <input class="form-control" type="text" name="knowledgename" placeholder="知识点名称">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="definition" placeholder="知识点定义">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="feature" placeholder="特征">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-default"><span class="icon-search"></span> 新增知识点</button>
+        </div>
+        <h4 th:utext="${msg3}"></h4>
+    </form>
+    <form class="form-inline search-form" id="sensor-search-form" action="/updateknowledge" method="post">
+        <div class="form-group">
+            <input class="form-control" type="text" name="knowledgename" placeholder="知识点名称">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="definition" placeholder="知识点定义">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="feature" placeholder="特征">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-default"><span class="icon-search"></span> 更新知识点</button>
+        </div>
+    </form>
+    <h4 th:utext="${msg4}"></h4>
+    <hr class="my-hr">
+    <div th:fragment="table_refresh">
+        <form action="/knowledge_man" method="post">
+            <!-- 定义一个表格元素 -->
+            <table id="sensor-list-table" class="table table-striped table-bordered table-bg table-hover">
+                <button type="button" id="btn-refresh"></button>
+                <span class="float-right myfont">共有<span id="totalRecoreds" th:text="${count}"></span>条记录</span>
+                <thead>
+                <tr class="text-c">
+                    <th width="5%">序号</th>
+                    <th>知识名</th>
+                    <th>定义</th>
+                    <th>特征</th>
+                </tr>
+                </thead>
+                <tr th:each="knowledge:${knowledges}">
+                    <td th:text="${knowledge.id}"></td>
+                    <td th:text="${knowledge.knowledgename}"></td>
+                    <td th:text="${knowledge.definition}"></td>
+                    <td th:text="${knowledge.feature}"></td>
+                </tr>
+                <tbody>
+
+                </tbody>
+                <!-- tbody是必须的 -->
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>
